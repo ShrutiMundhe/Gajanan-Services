@@ -1,0 +1,330 @@
+/* ============================================================
+   Booking Modal — booking.css
+   Injected via booking.js on every page
+   ============================================================ */
+
+/* ── Booking Modal Backdrop ── */
+#booking-modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 27, 42, 0.72);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  animation: bkFadeIn .25s ease forwards;
+}
+#booking-modal-backdrop.open {
+  display: flex;
+}
+@keyframes bkFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Booking Modal Box ── */
+#booking-modal {
+  background: #fff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 760px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 64px rgba(0,0,0,.22);
+  animation: bkSlideUp .3s cubic-bezier(.4,0,.2,1) forwards;
+  position: relative;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+#booking-modal::-webkit-scrollbar { display: none; }
+
+@keyframes bkSlideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Modal Header ── */
+.bk-header {
+  background: linear-gradient(135deg, #0A5C99 0%, #00B894 100%);
+  padding: 28px 32px 24px;
+  border-radius: 20px 20px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.bk-header-title {
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: .01em;
+  margin: 0;
+}
+.bk-header-subtitle {
+  color: rgba(255,255,255,.82);
+  font-size: .85rem;
+  margin: 2px 0 0;
+}
+.bk-close-btn {
+  background: rgba(255,255,255,.2);
+  border: none;
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background .2s;
+}
+.bk-close-btn:hover { background: rgba(255,255,255,.35); }
+
+/* ── Modal Body ── */
+.bk-body {
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 0;
+}
+@media (max-width: 600px) {
+  .bk-body { grid-template-columns: 1fr; }
+  .bk-summary-col { border-top: 1px solid #e8eef4; border-left: none !important; }
+}
+
+/* ── Left Column ── */
+.bk-form-col {
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Section Cards */
+.bk-section {
+  background: #f4f8fb;
+  border-radius: 12px;
+  padding: 16px 18px;
+}
+.bk-section-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: .82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #0A5C99;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Services checkboxes */
+.bk-services-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+@media (max-width: 400px) { .bk-services-grid { grid-template-columns: 1fr; } }
+
+.bk-check-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1.5px solid #e0eaf3;
+  border-radius: 8px;
+  padding: 9px 12px;
+  cursor: pointer;
+  font-size: .88rem;
+  font-weight: 500;
+  color: #3a4a5c;
+  transition: border-color .2s, background .2s;
+  user-select: none;
+}
+.bk-check-label:hover { border-color: #00B894; background: #f0fdfb; }
+.bk-check-label input[type="checkbox"] { accent-color: #00B894; width: 16px; height: 16px; flex-shrink: 0; }
+.bk-check-label.checked { border-color: #00B894; background: #e6faf5; color: #007a63; font-weight: 600; }
+
+/* Property select */
+.bk-select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid #e0eaf3;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: .9rem;
+  color: #3a4a5c;
+  background: #fff;
+  outline: none;
+  transition: border-color .2s;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+.bk-select:focus { border-color: #0A5C99; }
+
+/* Room Counters */
+.bk-counter-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #e8eef4;
+}
+.bk-counter-row:last-child { border-bottom: none; }
+.bk-counter-label {
+  font-size: .88rem;
+  font-weight: 500;
+  color: #3a4a5c;
+}
+.bk-counter-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.bk-counter-btn {
+  width: 28px;
+  height: 28px;
+  border: 1.5px solid #0A5C99;
+  background: #fff;
+  color: #0A5C99;
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .2s, color .2s;
+  line-height: 1;
+}
+.bk-counter-btn:hover { background: #0A5C99; color: #fff; }
+.bk-counter-num {
+  min-width: 28px;
+  text-align: center;
+  font-weight: 700;
+  font-size: .9rem;
+  color: #0d1b2a;
+}
+
+/* Contact inputs */
+.bk-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid #e0eaf3;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: .9rem;
+  color: #3a4a5c;
+  background: #fff;
+  outline: none;
+  transition: border-color .2s;
+  margin-bottom: 10px;
+}
+.bk-input:focus { border-color: #0A5C99; box-shadow: 0 0 0 3px rgba(10,92,153,.1); }
+.bk-input::placeholder { color: #b0bec5; }
+textarea.bk-input { resize: vertical; min-height: 80px; margin-bottom: 0; }
+
+/* Submit Button */
+.bk-submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #00B894, #0A5C99);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: .02em;
+  transition: opacity .2s, transform .15s;
+  margin-top: 4px;
+}
+.bk-submit-btn:hover { opacity: .92; transform: translateY(-1px); }
+.bk-submit-btn:active { transform: translateY(0); }
+
+/* ── Right Column — Summary ── */
+.bk-summary-col {
+  background: #f4f8fb;
+  border-left: 1px solid #e8eef4;
+  border-radius: 0 0 20px 0;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.bk-summary-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: .82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #0A5C99;
+  margin-bottom: 4px;
+}
+.bk-summary-empty {
+  color: #b0bec5;
+  font-size: .85rem;
+  font-style: italic;
+}
+.bk-summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: .85rem;
+  color: #3a4a5c;
+  padding: 4px 0;
+  border-bottom: 1px dashed #dde6ef;
+}
+.bk-summary-item:last-of-type { border-bottom: none; }
+.bk-summary-item span:last-child {
+  font-weight: 700;
+  color: #0A5C99;
+}
+.bk-summary-service-tag {
+  display: inline-flex;
+  align-items: center;
+  background: #e6faf5;
+  color: #007a63;
+  font-size: .78rem;
+  font-weight: 600;
+  border-radius: 20px;
+  padding: 3px 10px;
+  margin: 3px 2px;
+}
+.bk-summary-services-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+/* ── Success Toast ── */
+#bk-toast {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #00B894;
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 40px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: .95rem;
+  z-index: 99999;
+  box-shadow: 0 8px 32px rgba(0,184,148,.35);
+  white-space: nowrap;
+}
+#bk-toast.show { display: block; animation: toastIn .3s ease; }
+@keyframes toastIn {
+  from { opacity: 0; transform: translate(-50%, 20px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
+}
